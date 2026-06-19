@@ -1,0 +1,159 @@
+/*
+ * Estilos del OfferCountdown — look Motorola AR (handoff de diseño).
+ * Tokens expuestos como custom properties para poder retematizar desde el theme.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+.container {
+  --accent: #1a6cff;
+  --ink: #0c0c0d;
+  --muted: #6f6f6a;
+  --card: #ffffff;
+  --line: rgba(12, 12, 13, 0.1);
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 760px;
+  margin: 1.5rem auto;
+  padding: 34px 40px 30px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: 0 1px 2px rgba(12, 12, 13, 0.05);
+  color: var(--ink);
+  font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Encabezado: punto "live" pulsante + etiqueta */
+.head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.dot {
+  position: relative;
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  opacity: 0.5;
+  animation: pulse 2s ease-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.label {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--muted);
+}
+
+/* Timer estilo "plano": dígitos grandes sin caja */
+.timer {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.num {
+  display: flex;
+  font-size: clamp(48px, 12vw, 88px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+
+.unit {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* Dígito tipo odómetro (animación de rodillo) */
+.roller {
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.62s cubic-bezier(0.22, 0.9, 0.18, 1);
+}
+
+.track span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1em;
+}
+
+/* Fecha de fin */
+.end {
+  margin: 22px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--muted);
+}
+
+/* Estado expirado */
+.expired {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 0 6px;
+}
+
+.expiredTitle {
+  margin: 0;
+  font-size: clamp(34px, 8vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Responsive */
+@media screen and (max-width: 40em) {
+  .container {
+    margin: 1rem;
+    padding: 24px 20px 22px;
+  }
+
+  .timer {
+    gap: 18px;
+  }
+}
